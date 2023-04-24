@@ -1,12 +1,18 @@
 package com.thanebuhanan.caloriecounter
 
+
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.thanebuhanan.caloriecounter.databinding.FragmentFirstBinding
+import data.Network
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 
 /**
@@ -23,9 +29,27 @@ class FirstFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
+
+        lifecycleScope.launch {
+
+            try {
+                val test = Network.nutritionService.getFoodItems(
+                    apiKey = "1f87f0f5c6mshdc59119bc0fd661p12b23ajsnf6874192e8d2",
+                    query = "Cheese",
+                    fields = "item_name,item_id,brand_name,nf_calories,nf_total_fat,nf_protein",
+                )
+
+                val testTwo = test
+            } catch (yex: HttpException) {
+                Log.e("YO", yex.message!!)
+                //Log.e("YO", yex.response()!!.raw().)
+                val testThree = yex
+            }
+        }
+
         return binding.root
 
     }
