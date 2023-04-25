@@ -1,4 +1,4 @@
-package network
+package com.thanebuhanan.caloriecounter.network
 
 import com.squareup.moshi.Json
 
