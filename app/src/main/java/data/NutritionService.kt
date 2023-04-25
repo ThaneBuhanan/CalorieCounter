@@ -14,12 +14,12 @@ const val BASE_URL = "https://nutritionix-api.p.rapidapi.com/v1_1/search/"
 interface NutritionService {
     //https://nutritionix-api.p.rapidapi.com/v1_1/search/cheddar/?fields=item_name,item_id,brand_name,nf_calories,nf_total_fat,nf_protein
 
-    @GET("/{query}")
+    @GET("/v1_1/search/{query}")
     suspend fun getFoodItems(
         @Header("X-RapidAPI-KEY") apiKey: String,
         @Path("query") query: String,
         @Query("fields") fields: String,
-    )
+    ): FoodResponse
 }
 
 private val moshi = Moshi.Builder()
@@ -28,7 +28,6 @@ private val moshi = Moshi.Builder()
 
 private val moshiRetrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
-    //.addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
     .build()
 
