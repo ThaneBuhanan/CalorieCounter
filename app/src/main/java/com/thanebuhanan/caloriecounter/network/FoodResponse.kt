@@ -17,6 +17,6 @@ data class FoodFields(
     @Json(name = "nf_calories")
     val calories: Double,
     @Json(name = "item_name")
-    val itemName: String,
+    val name: String,
 )
 
