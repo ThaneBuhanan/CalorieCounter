@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.thanebuhanan.caloriecounter.data.local.LocalDB
 import com.thanebuhanan.caloriecounter.databinding.FragmentSplashBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -17,8 +18,13 @@ class SplashFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch {
+            val nutritionDao = LocalDB.getNutritionDao(requireContext())
             delay(5000)
-            findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToFirstFragment())
+            if (nutritionDao.getUser().isEmpty()) {
+                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToSetupFragment())
+            } else {
+                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+            }
         }
     }
 
@@ -36,7 +42,6 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val binding = FragmentSplashBinding.inflate(inflater, container, false)
 
         return binding.root
