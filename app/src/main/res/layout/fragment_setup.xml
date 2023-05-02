@@ -46,14 +46,15 @@
     <EditText
         android:id="@+id/edit_age"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:importantForAutofill="no"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/age"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/age"
-        app:layout_constraintTop_toBottomOf="@+id/age"
+        app:layout_constraintTop_toTopOf="@+id/age"
         tools:ignore="LabelFor" />
 
     <TextView
@@ -68,16 +69,31 @@
         app:layout_constraintTop_toBottomOf="@+id/age" />
 
     <EditText
-        android:id="@+id/edit_height"
+        android:id="@+id/edit_height_feet"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:importantForAutofill="no"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/height"
+        app:layout_constraintEnd_toStartOf="@id/edit_height_inches"
         app:layout_constraintStart_toEndOf="@+id/height"
-        app:layout_constraintTop_toBottomOf="@+id/height"
+        app:layout_constraintTop_toTopOf="@+id/height"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/edit_height_inches"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edit_height_feet"
+        app:layout_constraintTop_toTopOf="@+id/height"
         tools:ignore="LabelFor" />
 
     <TextView
@@ -94,14 +110,15 @@
     <EditText
         android:id="@+id/edit_weight"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:importantForAutofill="no"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/weight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/weight"
-        app:layout_constraintTop_toBottomOf="@+id/weight"
+        app:layout_constraintTop_toTopOf="@+id/weight"
         tools:ignore="LabelFor" />
 
     <Button
