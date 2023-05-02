@@ -27,14 +27,6 @@ class SetupFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_setupFragment_to_homeFragment)
-        }
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
