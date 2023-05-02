@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkGreen">#0E2408</color>
+    <color name="tan">#EFA77C</color>
+    <color name="moreTan">#EC9663</color>
 </resources>
