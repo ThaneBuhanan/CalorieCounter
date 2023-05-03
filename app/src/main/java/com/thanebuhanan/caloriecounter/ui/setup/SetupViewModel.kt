@@ -14,10 +14,21 @@ class SetupViewModel(private val nutritionDAO: NutritionDao) : ViewModel() {
     val heightIn = MutableLiveData<Int>()
     val weight = MutableLiveData<Int>()
 
-    fun saveUser(userDTO: UserDTO) {
+    private val _navigateToHome = MutableLiveData<Unit>()
+    val navigateToHome
+        get() = _navigateToHome
+
+    fun saveUser(hasGoalGain: Boolean) {
+        val userDTO = UserDTO(
+            age = age.value ?: 0,
+            heightFt = heightFt.value ?: 0,
+            heightIn = heightIn.value ?: 0,
+            weight = weight.value ?: 0,
+            hasGoalGain = hasGoalGain
+        )
         viewModelScope.launch {
             nutritionDAO.saveUser(userDTO)
+            _navigateToHome.value = Unit
         }
     }
-
 }

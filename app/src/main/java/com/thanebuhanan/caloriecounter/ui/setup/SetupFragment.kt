@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.thanebuhanan.caloriecounter.data.local.LocalDB
 import com.thanebuhanan.caloriecounter.databinding.FragmentSetupBinding
 
@@ -22,8 +23,16 @@ class SetupFragment : Fragment() {
         val binding = FragmentSetupBinding.inflate(inflater, container, false)
         binding.viewModel = setupViewModel
         binding.buttonGain.setOnClickListener {
-            val test = binding.viewModel!!.age.value
-            val test2 = test
+            setupViewModel.saveUser(true)
+        }
+        binding.buttonLose.setOnClickListener {
+            setupViewModel.saveUser(false)
+        }
+
+        setupViewModel.navigateToHome.observe(viewLifecycleOwner) {
+            findNavController().navigate(
+                SetupFragmentDirections.actionSetupFragmentToHomeFragment()
+            )
         }
 
         return binding.root
