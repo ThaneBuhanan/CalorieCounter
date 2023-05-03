@@ -1,4 +1,4 @@
-package com.thanebuhanan.caloriecounter
+package com.thanebuhanan.caloriecounter.ui.splash
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.thanebuhanan.caloriecounter.SplashFragmentDirections
 import com.thanebuhanan.caloriecounter.data.local.LocalDB
 import com.thanebuhanan.caloriecounter.databinding.FragmentSplashBinding
 import kotlinx.coroutines.delay

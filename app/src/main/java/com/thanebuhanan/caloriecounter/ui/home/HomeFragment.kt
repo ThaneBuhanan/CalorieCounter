@@ -1,4 +1,4 @@
-package com.thanebuhanan.caloriecounter
+package com.thanebuhanan.caloriecounter.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.thanebuhanan.caloriecounter.data.dto.DayDTO
 import com.thanebuhanan.caloriecounter.databinding.FragmentHomeBinding
-import com.thanebuhanan.caloriecounter.ui.DayAdapter
-import com.thanebuhanan.caloriecounter.ui.DayListener
 
 class HomeFragment : Fragment() {
     override fun onCreateView(

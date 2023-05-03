@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.thanebuhanan.caloriecounter.ui
+package com.thanebuhanan.caloriecounter.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
