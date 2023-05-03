@@ -7,7 +7,6 @@ import java.util.UUID
 @Entity(tableName = "user")
 data class UserDTO(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
-    val name: String,
     val age: Int,
     val heightFt: Int,
     val heightIn: Int,
