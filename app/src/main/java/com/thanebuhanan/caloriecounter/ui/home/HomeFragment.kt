@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.thanebuhanan.caloriecounter.data.dto.DayDTO
 import com.thanebuhanan.caloriecounter.data.local.LocalDB
 import com.thanebuhanan.caloriecounter.databinding.FragmentHomeBinding
 
@@ -27,11 +27,15 @@ class HomeFragment : Fragment() {
         })
         binding.listOfDays.adapter = adapter
 
-        homeViewModel.days.observe(viewLifecycleOwner) {dayDTOs ->
+        homeViewModel.days.observe(viewLifecycleOwner) { dayDTOs ->
             adapter.submitList(dayDTOs)
         }
 
         binding.listOfDays.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.floatingActionButton.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDayFragment())
+        }
 
         return binding.root
     }
