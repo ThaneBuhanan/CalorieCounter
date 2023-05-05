@@ -66,7 +66,7 @@ class DayListener(val clickListener: (dayId: String) -> Unit) {
 class ViewHolder(private val binding: ListItemDayBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(clickListener: DayListener, item: DayDTO) {
-//        binding.sleep = item
+        binding.dayView.text = item.name
 //        binding.clickListener = clickListener
         binding.executePendingBindings()
     }
