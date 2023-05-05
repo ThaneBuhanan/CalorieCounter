@@ -38,15 +38,6 @@ class DayAdapter(private val clickListener: DayListener) :
         val day = getItem(position) as DayDTO
         holder.bind(clickListener, day)
     }
-
-    private val adapterScope = CoroutineScope(Dispatchers.Default)
-    fun addHeaderAndSubmitList(list: List<DayDTO>?) {
-        adapterScope.launch {
-            withContext(Dispatchers.Main) {
-                submitList(list)
-            }
-        }
-    }
 }
 
 class DayDiffCallback : DiffUtil.ItemCallback<DayDTO>() {
