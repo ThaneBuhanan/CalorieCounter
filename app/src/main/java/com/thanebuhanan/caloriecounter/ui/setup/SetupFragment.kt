@@ -22,6 +22,7 @@ class SetupFragment : Fragment() {
 
         val binding = FragmentSetupBinding.inflate(inflater, container, false)
         binding.viewModel = setupViewModel
+        binding.lifecycleOwner = this
         binding.buttonGain.setOnClickListener {
             setupViewModel.saveUser(true)
         }
