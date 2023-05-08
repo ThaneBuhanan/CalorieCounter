@@ -11,6 +11,7 @@ import android.widget.EditText
 import androidx.annotation.CheckResult
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.thanebuhanan.caloriecounter.databinding.FragmentFoodBinding
 import com.thanebuhanan.caloriecounter.network.FoodResponse
 import com.thanebuhanan.caloriecounter.network.Network
@@ -33,6 +34,14 @@ class FoodFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentFoodBinding.inflate(inflater, container, false)
+        val adapter = FoodAdapter(FoodListener {
+
+        })
+
+        binding.foodList.apply {
+            this.adapter = adapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
 
         lifecycleScope.launch {
             binding.textInputEditText
@@ -47,6 +56,7 @@ class FoodFragment : Fragment() {
                             query = query,
                             fields = "nf_protein,nf_calories,item_name"
                         )
+                        adapter.submitList(foodResponse.foodItems)
                         Log.e("yo", foodResponse.foodItems.size.toString())
                     }
                 }
