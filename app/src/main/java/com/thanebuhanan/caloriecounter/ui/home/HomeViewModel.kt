@@ -9,13 +9,18 @@ import com.thanebuhanan.caloriecounter.data.local.NutritionDao
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val nutritionDAO: NutritionDao) : ViewModel() {
-
+    val goalCalories = MutableLiveData<Int>()
+    val goalProtein = MutableLiveData<Int>()
     val days = MutableLiveData<List<DayDTO>>()
 
     init {
         viewModelScope.launch {
             val justDays: List<DayDTO> = nutritionDAO.getAll().justDays()
             days.value = justDays
+
+            val userDTO = nutritionDAO.getUser().first()
+            goalProtein.value = userDTO.goalProtein
+            goalCalories.value = userDTO.goalCalories
         }
     }
 }

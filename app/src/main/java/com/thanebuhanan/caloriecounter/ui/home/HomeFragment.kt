@@ -21,7 +21,8 @@ class HomeFragment : Fragment() {
         val nutritionDao = LocalDB.getNutritionDao(requireContext())
         val viewModelFactory = HomeViewModelFactory(nutritionDao)
         val homeViewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
-
+        binding.viewModel = homeViewModel
+        binding.lifecycleOwner = this
         val adapter = DayAdapter(DayListener { dayId ->
 //            ViewModel.onSleepNightClicked(nightId)
         })

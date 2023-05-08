@@ -9,9 +9,6 @@ import kotlinx.coroutines.launch
 
 class SetupViewModel(private val nutritionDAO: NutritionDao) : ViewModel() {
 
-    val age = MutableLiveData<Int>()
-    val heightFt = MutableLiveData<Int>()
-    val heightIn = MutableLiveData<Int>()
     val weight = MutableLiveData<Int>()
 
     private val _navigateToHome = MutableLiveData<Unit>()
@@ -19,11 +16,11 @@ class SetupViewModel(private val nutritionDAO: NutritionDao) : ViewModel() {
         get() = _navigateToHome
 
     fun saveUser(hasGoalGain: Boolean) {
+        val weight = weight.value ?: 0
         val userDTO = UserDTO(
-            age = age.value ?: 0,
-            heightFt = heightFt.value ?: 0,
-            heightIn = heightIn.value ?: 0,
-            weight = weight.value ?: 0,
+            weight = weight,
+            goalCalories = weight.toGoalCalories(hasGoalGain),
+            goalProtein = weight.toGoalProtein(hasGoalGain),
             hasGoalGain = hasGoalGain
         )
         viewModelScope.launch {
@@ -31,4 +28,20 @@ class SetupViewModel(private val nutritionDAO: NutritionDao) : ViewModel() {
             _navigateToHome.value = Unit
         }
     }
+}
+
+fun Int.toGoalCalories(hasGoalGain: Boolean): Int {
+    val caloriesMaintainWeight = this * 15
+    return caloriesMaintainWeight + when (hasGoalGain) {
+        true -> 500
+        else -> -500
+    }
+}
+
+fun Int.toGoalProtein(hasGoalGain: Boolean): Int {
+    val goalProtein = this * when (hasGoalGain) {
+        true -> .8
+        else -> .5
+    }
+    return goalProtein.toInt()
 }

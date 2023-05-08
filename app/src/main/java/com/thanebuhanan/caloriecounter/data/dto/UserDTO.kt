@@ -8,5 +8,7 @@ import java.util.UUID
 data class UserDTO(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val weight: Int,
+    val goalCalories: Int,
+    val goalProtein: Int,
     val hasGoalGain: Boolean,
 )
