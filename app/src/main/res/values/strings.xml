@@ -17,8 +17,8 @@
     <string name="add_food">Add Food</string>
     <string name="protein">g protein</string>
     <string name="calories">calories</string>
-
     <string name="setup_text">
         To accurately hit your goals input your information below.
     </string>
+    <string name="search_foods">Search Foods</string>
 </resources>

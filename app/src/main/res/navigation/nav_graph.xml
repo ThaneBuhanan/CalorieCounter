@@ -39,5 +39,19 @@
     <fragment
         android:id="@+id/dayFragment"
         android:name="com.thanebuhanan.caloriecounter.ui.day.DayFragment"
-        android:label="DayFragment" />
+        android:label="DayFragment" >
+        <action
+            android:id="@+id/action_dayFragment_to_foodFragment"
+            app:destination="@id/foodFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodFragment"
+        android:name="com.thanebuhanan.caloriecounter.ui.food.FoodFragment"
+        android:label="FoodFragment" >
+        <action
+            android:id="@+id/action_foodFragment_to_dayFragment"
+            app:destination="@id/dayFragment"
+            app:popUpTo="@id/dayFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>
