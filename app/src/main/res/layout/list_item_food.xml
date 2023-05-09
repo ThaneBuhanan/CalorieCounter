@@ -15,7 +15,7 @@
             android:id="@+id/foodView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            tools:text="Hotdog"
+            tools:text="Hotdog - Calories ___, Protein _g"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +24,5 @@
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </layout>

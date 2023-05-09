@@ -21,4 +21,5 @@
         To accurately hit your goals input your information below.
     </string>
     <string name="search_foods">Search Foods</string>
+    <string name="food_item">%1$s - Calories %2$.0f, Protein %3$.0f g</string>
 </resources>

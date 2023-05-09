@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.thanebuhanan.caloriecounter.R
 import com.thanebuhanan.caloriecounter.databinding.ListItemFoodBinding
 import com.thanebuhanan.caloriecounter.network.nutritionix.FoodItem
 
@@ -38,7 +39,15 @@ class FoodListener(val clickListener: () -> Unit) {
 class ViewHolder(private val binding: ListItemFoodBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(clickListener: FoodListener, item: FoodItem) {
-        binding.foodView.text = item.fields.name
+        val resources = itemView.context.resources
+        val string = resources.getString(
+            R.string.food_item,
+            item.fields.name,
+            item.fields.calories,
+            item.fields.protein
+        )
+
+        binding.foodView.text = string
 //        binding.clickListener = clickListener
         binding.executePendingBindings()
     }
