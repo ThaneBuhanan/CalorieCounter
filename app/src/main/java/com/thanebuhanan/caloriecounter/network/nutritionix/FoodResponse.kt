@@ -1,4 +1,4 @@
-package com.thanebuhanan.caloriecounter.network
+package com.thanebuhanan.caloriecounter.network.nutritionix
 
 import com.squareup.moshi.Json
 

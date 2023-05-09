@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.thanebuhanan.caloriecounter.databinding.ListItemFoodBinding
-import com.thanebuhanan.caloriecounter.network.FoodItem
+import com.thanebuhanan.caloriecounter.network.nutritionix.FoodItem
 
 
 class FoodAdapter(private val clickListener: FoodListener) :

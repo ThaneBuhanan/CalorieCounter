@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thanebuhanan.caloriecounter.databinding.FragmentFoodBinding
-import com.thanebuhanan.caloriecounter.network.FoodResponse
-import com.thanebuhanan.caloriecounter.network.Network
+import com.thanebuhanan.caloriecounter.network.nutritionix.FoodResponse
+import com.thanebuhanan.caloriecounter.network.nutritionix.Network
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.awaitClose
