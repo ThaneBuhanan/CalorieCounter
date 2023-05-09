@@ -1,9 +1,6 @@
 package com.thanebuhanan.caloriecounter.network.nutritionix
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import com.thanebuhanan.caloriecounter.network.moshiRetrofit
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -22,16 +19,7 @@ interface NutritionService {
     ): FoodResponse
 }
 
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
-private val moshiRetrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl(BASE_URL)
-    .build()
-
-object Network {
+object NutritionixNetwork {
     val nutritionService: NutritionService by lazy {
         moshiRetrofit.create(NutritionService::class.java)
     }

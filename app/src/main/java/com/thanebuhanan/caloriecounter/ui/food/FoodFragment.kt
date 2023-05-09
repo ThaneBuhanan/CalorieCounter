@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thanebuhanan.caloriecounter.databinding.FragmentFoodBinding
 import com.thanebuhanan.caloriecounter.network.nutritionix.FoodResponse
-import com.thanebuhanan.caloriecounter.network.nutritionix.Network
+import com.thanebuhanan.caloriecounter.network.nutritionix.NutritionixNetwork
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.awaitClose
@@ -51,7 +51,7 @@ class FoodFragment : Fragment() {
                     val query = q.toString()
                     if (query != "") {
                         Log.e("yo", query)
-                        val foodResponse: FoodResponse = Network.nutritionService.getFoodItems(
+                        val foodResponse: FoodResponse = NutritionixNetwork.nutritionService.getFoodItems(
                             apiKey = "1f87f0f5c6mshdc59119bc0fd661p12b23ajsnf6874192e8d2",
                             query = query,
                             fields = "nf_protein,nf_calories,item_name"
