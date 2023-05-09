@@ -8,9 +8,9 @@ data class CalorieNinjasResponse(
 
 data class CalorieNinjasFoodItem(
     val name: String,
-    val calories: Int,
+    val calories: Double,
     @Json(name = "protein_g")
-    val protein: Int,
+    val protein: Double,
 )
 
 //{
