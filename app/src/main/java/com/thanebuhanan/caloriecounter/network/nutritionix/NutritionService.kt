@@ -1,12 +1,12 @@
 package com.thanebuhanan.caloriecounter.network.nutritionix
 
-import com.thanebuhanan.caloriecounter.network.moshiRetrofit
+import com.thanebuhanan.caloriecounter.network.moshiRetrofitBuilder
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-const val BASE_URL = "https://nutritionix-api.p.rapidapi.com/v1_1/search/"
+const val NUTRITIONIX_BASE_URL = "https://nutritionix-api.p.rapidapi.com/v1_1/search/"
 
 interface NutritionService {
     //https://nutritionix-api.p.rapidapi.com/v1_1/search/cheddar/?fields=item_name,item_id,brand_name,nf_calories,nf_total_fat,nf_protein
@@ -21,6 +21,7 @@ interface NutritionService {
 
 object NutritionixNetwork {
     val nutritionService: NutritionService by lazy {
+        val moshiRetrofit = moshiRetrofitBuilder.baseUrl(NUTRITIONIX_BASE_URL).build()
         moshiRetrofit.create(NutritionService::class.java)
     }
 }
