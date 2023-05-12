@@ -9,14 +9,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.annotation.CheckResult
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.thanebuhanan.caloriecounter.data.local.LocalDB
 import com.thanebuhanan.caloriecounter.databinding.FragmentFoodBinding
-import com.thanebuhanan.caloriecounter.network.calorieninjas.CalorieNinjasFoodItem
-import com.thanebuhanan.caloriecounter.network.calorieninjas.CalorieNinjasNetwork
-import com.thanebuhanan.caloriecounter.network.calorieninjas.CalorieNinjasResponse
-import com.thanebuhanan.caloriecounter.network.nutritionix.FoodFields
-import com.thanebuhanan.caloriecounter.network.nutritionix.FoodItem
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.awaitClose
@@ -36,6 +33,11 @@ class FoodFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentFoodBinding.inflate(inflater, container, false)
+        val nutritionDao = LocalDB.getNutritionDao(requireContext())
+        val viewModelFactory = FoodViewModelFactory(nutritionDao)
+        val foodViewModel = ViewModelProvider(this, viewModelFactory)[FoodViewModel::class.java]
+//        binding.viewModel = homeViewModel
+//        binding.lifecycleOwner = this
         val adapter = FoodAdapter(FoodListener {
 
         })
@@ -52,36 +54,16 @@ class FoodFragment : Fragment() {
                 .debounce(1500).collectLatest { q ->
                     val query = q.toString()
                     if (query != "") {
-                        val calorieNinjasResponse: CalorieNinjasResponse =
-                            CalorieNinjasNetwork.calorieNinjasService.getFoodItems(
-                                apiKey = "JwSEOs7a80TOnGOYvBMHgQ==LYQk4w7Sqx2bsJ5a",
-                                query = query,
-                            )
-                        val calorieNinjasFoodItems = calorieNinjasResponse.items
-                        val foodItems: List<FoodItem> = calorieNinjasFoodItems.toFoodItems()
-//                        val foodResponse: FoodResponse = NutritionixNetwork.nutritionService.getFoodItems(
-//                            apiKey = "1f87f0f5c6mshdc59119bc0fd661p12b23ajsnf6874192e8d2",
-//                            query = query,
-//                            fields = "nf_protein,nf_calories,item_name"
-//                        )
-                        adapter.submitList(foodItems)
+                        foodViewModel.getFoodItems(query)
                     }
                 }
         }
 
-        return binding.root
-    }
-}
+        foodViewModel.foodItems.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
 
-private fun List<CalorieNinjasFoodItem>.toFoodItems(): List<FoodItem> {
-    return map {
-        FoodItem(
-            FoodFields(
-                protein = it.protein.toDouble(),
-                calories = it.calories.toDouble(),
-                name = it.name,
-            )
-        )
+        return binding.root
     }
 }
 
