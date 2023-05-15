@@ -2,11 +2,6 @@ package com.thanebuhanan.caloriecounter.network.nutritionix
 
 import com.squareup.moshi.Json
 
-data class FoodResponse(
-    @Json(name = "hits")
-    val foodItems: List<FoodItem>
-)
-
 data class FoodItem(
     val fields: FoodFields
 )
