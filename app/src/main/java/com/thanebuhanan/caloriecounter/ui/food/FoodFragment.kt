@@ -12,8 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.thanebuhanan.caloriecounter.CalorieCounterApplication
 import com.thanebuhanan.caloriecounter.data.local.LocalDB
 import com.thanebuhanan.caloriecounter.databinding.FragmentFoodBinding
+import com.thanebuhanan.caloriecounter.ui.setup.SetupViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.awaitClose
@@ -24,18 +26,25 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class FoodFragment : Fragment() {
+
+    @Inject
+    lateinit var viewModel: FoodViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().application as CalorieCounterApplication).appComponent.inject(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentFoodBinding.inflate(inflater, container, false)
-        val nutritionDao = LocalDB.getNutritionDao(requireContext())
-        val viewModelFactory = FoodViewModelFactory(nutritionDao)
-        val foodViewModel = ViewModelProvider(this, viewModelFactory)[FoodViewModel::class.java]
 //        binding.viewModel = homeViewModel
 //        binding.lifecycleOwner = this
         val adapter = FoodAdapter(FoodListener {
@@ -54,12 +63,12 @@ class FoodFragment : Fragment() {
                 .debounce(1500).collectLatest { q ->
                     val query = q.toString()
                     if (query != "") {
-                        foodViewModel.getFoodItems(query)
+                        viewModel.getFoodItems(query)
                     }
                 }
         }
 
-        foodViewModel.foodItems.observe(viewLifecycleOwner) {
+        viewModel.foodItems.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
 

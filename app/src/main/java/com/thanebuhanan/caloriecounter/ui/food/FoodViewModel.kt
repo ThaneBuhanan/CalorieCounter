@@ -10,8 +10,9 @@ import com.thanebuhanan.caloriecounter.network.calorieninjas.CalorieNinjasRespon
 import com.thanebuhanan.caloriecounter.network.nutritionix.FoodFields
 import com.thanebuhanan.caloriecounter.network.nutritionix.FoodItem
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FoodViewModel(nutritionDAO: NutritionDao) : ViewModel() {
+class FoodViewModel @Inject constructor(nutritionDAO: NutritionDao) : ViewModel() {
     val foodItems = MutableLiveData<List<FoodItem>>()
 
     fun getFoodItems(query: String) {
