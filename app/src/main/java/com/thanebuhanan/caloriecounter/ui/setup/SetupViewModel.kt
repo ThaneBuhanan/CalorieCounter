@@ -6,8 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.thanebuhanan.caloriecounter.data.dto.UserDTO
 import com.thanebuhanan.caloriecounter.data.local.NutritionDao
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SetupViewModel(private val nutritionDAO: NutritionDao) : ViewModel() {
+class SetupViewModel @Inject constructor(private val nutritionDAO: NutritionDao) : ViewModel() {
 
     val weight = MutableLiveData<Int>()
 

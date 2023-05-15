@@ -6,31 +6,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.thanebuhanan.caloriecounter.data.local.LocalDB
+import com.thanebuhanan.caloriecounter.CalorieCounterApplication
 import com.thanebuhanan.caloriecounter.databinding.FragmentSetupBinding
+import javax.inject.Inject
 
 class SetupFragment : Fragment() {
+
+    @Inject
+    lateinit var viewModel: SetupViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().application as CalorieCounterApplication).appComponent.inject(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val nutritionDao = LocalDB.getNutritionDao(requireContext())
-        val viewModelFactory = SetupViewModelFactory(nutritionDao)
-        val setupViewModel = ViewModelProvider(this, viewModelFactory)[SetupViewModel::class.java]
 
         val binding = FragmentSetupBinding.inflate(inflater, container, false)
-        binding.viewModel = setupViewModel
+        binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.buttonGain.setOnClickListener {
-            setupViewModel.saveUser(true)
+            viewModel.saveUser(true)
         }
         binding.buttonLose.setOnClickListener {
-            setupViewModel.saveUser(false)
+            viewModel.saveUser(false)
         }
 
-        setupViewModel.navigateToHome.observe(viewLifecycleOwner) {
+        viewModel.navigateToHome.observe(viewLifecycleOwner) {
             findNavController().navigate(
                 SetupFragmentDirections.actionSetupFragmentToHomeFragment()
             )
