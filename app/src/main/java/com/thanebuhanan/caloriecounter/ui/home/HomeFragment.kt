@@ -5,30 +5,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.thanebuhanan.caloriecounter.data.local.LocalDB
+import com.thanebuhanan.caloriecounter.CalorieCounterApplication
 import com.thanebuhanan.caloriecounter.databinding.FragmentHomeBinding
+import javax.inject.Inject
 
 class HomeFragment : Fragment() {
+
+    @Inject
+    lateinit var viewModel: HomeViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().application as CalorieCounterApplication).appComponent.inject(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        val nutritionDao = LocalDB.getNutritionDao(requireContext())
-        val viewModelFactory = HomeViewModelFactory(nutritionDao)
-        val homeViewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
-        binding.viewModel = homeViewModel
+        binding.viewModel = viewModel
         binding.lifecycleOwner = this
         val adapter = DayAdapter(DayListener { dayId ->
 //            ViewModel.onSleepNightClicked(nightId)
         })
         binding.listOfDays.adapter = adapter
 
-        homeViewModel.days.observe(viewLifecycleOwner) { dayDTOs ->
+        viewModel.days.observe(viewLifecycleOwner) { dayDTOs ->
             adapter.submitList(dayDTOs)
         }
 

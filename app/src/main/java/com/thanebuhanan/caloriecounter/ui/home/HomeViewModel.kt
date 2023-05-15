@@ -7,8 +7,9 @@ import com.thanebuhanan.caloriecounter.data.dto.DayAndFoods
 import com.thanebuhanan.caloriecounter.data.dto.DayDTO
 import com.thanebuhanan.caloriecounter.data.local.NutritionDao
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(private val nutritionDAO: NutritionDao) : ViewModel() {
+class HomeViewModel @Inject constructor(private val nutritionDAO: NutritionDao) : ViewModel() {
     val goalCalories = MutableLiveData<Int>()
     val goalProtein = MutableLiveData<Int>()
     val days = MutableLiveData<List<DayDTO>>()
