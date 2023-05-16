@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_dayFragment_to_foodFragment"
             app:destination="@id/foodFragment" />
+        <argument
+            android:name="dayId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/foodFragment"

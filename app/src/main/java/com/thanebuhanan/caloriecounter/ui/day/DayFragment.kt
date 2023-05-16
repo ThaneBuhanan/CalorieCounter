@@ -13,8 +13,9 @@ class DayFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val dayId = DayFragmentArgs.fromBundle(requireArguments()).dayId
         val binding = FragmentDayBinding.inflate(inflater, container, false)
-        binding.floatingActionButton.setOnClickListener{
+        binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(DayFragmentDirections.actionDayFragmentToFoodFragment())
         }
 

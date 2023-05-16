@@ -37,11 +37,12 @@ class HomeFragment : Fragment() {
         viewModel.days.observe(viewLifecycleOwner) { dayDTOs ->
             adapter.submitList(dayDTOs)
         }
-
+        viewModel.goToDayScreen.observe(viewLifecycleOwner) {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDayFragment(it))
+        }
         binding.listOfDays.layoutManager = LinearLayoutManager(requireContext())
-
         binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDayFragment())
+            viewModel.createDay()
         }
 
         return binding.root

@@ -7,12 +7,17 @@ import com.thanebuhanan.caloriecounter.data.dto.DayAndFoods
 import com.thanebuhanan.caloriecounter.data.dto.DayDTO
 import com.thanebuhanan.caloriecounter.data.local.NutritionDao
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val nutritionDAO: NutritionDao) : ViewModel() {
     val goalCalories = MutableLiveData<Int>()
     val goalProtein = MutableLiveData<Int>()
     val days = MutableLiveData<List<DayDTO>>()
+    val goToDayScreen = MutableLiveData<String>()
 
     init {
         viewModelScope.launch {
@@ -24,9 +29,28 @@ class HomeViewModel @Inject constructor(private val nutritionDAO: NutritionDao) 
             goalCalories.value = userDTO.goalCalories
         }
     }
-}
 
+    fun createDay() {
+        viewModelScope.launch {
+            val todaysDate = getTodaysDate()
+            var dayAndFoods = nutritionDAO.getByDayId(todaysDate)
+            if (dayAndFoods == null) {
+                val dayDTO = DayDTO(todaysDate)
+                nutritionDAO.saveDay(dayDTO)
+                dayAndFoods = nutritionDAO.getByDayId(todaysDate)
+            }
+            goToDayScreen.value = dayAndFoods.day.id
+        }
+    }
+}
 
 private fun List<DayAndFoods>.justDays(): List<DayDTO> {
     return map { it.day }
+}
+
+private fun getTodaysDate(): String {
+    val c: Date = Calendar.getInstance().time
+    val df = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+    return df.format(c)
 }

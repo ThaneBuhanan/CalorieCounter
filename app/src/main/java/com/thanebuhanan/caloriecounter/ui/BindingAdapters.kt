@@ -7,7 +7,8 @@ import androidx.databinding.InverseBindingAdapter
 
 @BindingAdapter("android:text")
 fun bindIntegerInText(tv: EditText, value: Int) {
-    tv.setText(value.toString())
+    if (tv.text.toString() != value.toString())
+        tv.setText(value.toString())
 }
 
 @InverseBindingAdapter(attribute = "android:text")
