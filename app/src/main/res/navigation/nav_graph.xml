@@ -56,5 +56,8 @@
             app:destination="@id/dayFragment"
             app:popUpTo="@id/dayFragment"
             app:popUpToInclusive="false" />
+        <argument
+            android:name="dayId"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -16,7 +16,7 @@ class DayFragment : Fragment() {
         val dayId = DayFragmentArgs.fromBundle(requireArguments()).dayId
         val binding = FragmentDayBinding.inflate(inflater, container, false)
         binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(DayFragmentDirections.actionDayFragmentToFoodFragment())
+            findNavController().navigate(DayFragmentDirections.actionDayFragmentToFoodFragment(dayId))
         }
 
         return binding.root

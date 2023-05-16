@@ -9,13 +9,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.annotation.CheckResult
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thanebuhanan.caloriecounter.CalorieCounterApplication
-import com.thanebuhanan.caloriecounter.data.local.LocalDB
 import com.thanebuhanan.caloriecounter.databinding.FragmentFoodBinding
-import com.thanebuhanan.caloriecounter.ui.setup.SetupViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.awaitClose
@@ -44,12 +42,13 @@ class FoodFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val dayId = FoodFragmentArgs.fromBundle(requireArguments()).dayId
         val binding = FragmentFoodBinding.inflate(inflater, container, false)
 //        binding.viewModel = homeViewModel
 //        binding.lifecycleOwner = this
-        val adapter = FoodAdapter(FoodListener {
-
-        })
+        val adapter = FoodAdapter { foodItem ->
+            viewModel.saveFoodItem(dayId, foodItem)
+        }
 
         binding.foodList.apply {
             this.adapter = adapter
@@ -67,7 +66,9 @@ class FoodFragment : Fragment() {
                     }
                 }
         }
-
+        viewModel.goBack.observe(viewLifecycleOwner) {
+            findNavController().popBackStack()
+        }
         viewModel.foodItems.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }

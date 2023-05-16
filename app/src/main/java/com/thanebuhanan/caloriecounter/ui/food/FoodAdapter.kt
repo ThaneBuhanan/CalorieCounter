@@ -10,7 +10,7 @@ import com.thanebuhanan.caloriecounter.databinding.ListItemFoodBinding
 import com.thanebuhanan.caloriecounter.network.calorieninjas.FoodItem
 
 
-class FoodAdapter(private val clickListener: FoodListener) :
+class FoodAdapter(private val onClick: (FoodItem) -> Unit) :
     ListAdapter<FoodItem, ViewHolder>(FoodDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -18,7 +18,7 @@ class FoodAdapter(private val clickListener: FoodListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val foodItem = getItem(position) as FoodItem
-        holder.bind(clickListener, foodItem)
+        holder.bind(onClick, foodItem)
     }
 }
 
@@ -38,7 +38,7 @@ class FoodListener(val clickListener: () -> Unit) {
 
 class ViewHolder(private val binding: ListItemFoodBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(clickListener: FoodListener, item: FoodItem) {
+    fun bind(onClick: (FoodItem) -> Unit, item: FoodItem) {
         val resources = itemView.context.resources
         val string = resources.getString(
             R.string.food_item,
@@ -46,9 +46,10 @@ class ViewHolder(private val binding: ListItemFoodBinding) : RecyclerView.ViewHo
             item.calories,
             item.protein
         )
-
+        binding.root.setOnClickListener{
+            onClick(item)
+        }
         binding.foodView.text = string
-//        binding.clickListener = clickListener
         binding.executePendingBindings()
     }
 
