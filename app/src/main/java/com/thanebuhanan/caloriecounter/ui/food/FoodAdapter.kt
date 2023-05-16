@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.thanebuhanan.caloriecounter.R
 import com.thanebuhanan.caloriecounter.databinding.ListItemFoodBinding
-import com.thanebuhanan.caloriecounter.network.nutritionix.FoodItem
+import com.thanebuhanan.caloriecounter.network.calorieninjas.FoodItem
 
 
 class FoodAdapter(private val clickListener: FoodListener) :
@@ -24,7 +24,7 @@ class FoodAdapter(private val clickListener: FoodListener) :
 
 class FoodDiffCallback : DiffUtil.ItemCallback<FoodItem>() {
     override fun areItemsTheSame(oldItem: FoodItem, newItem: FoodItem): Boolean {
-        return oldItem.fields.name == newItem.fields.name
+        return oldItem.name == newItem.name
     }
 
     override fun areContentsTheSame(oldItem: FoodItem, newItem: FoodItem): Boolean {
@@ -42,9 +42,9 @@ class ViewHolder(private val binding: ListItemFoodBinding) : RecyclerView.ViewHo
         val resources = itemView.context.resources
         val string = resources.getString(
             R.string.food_item,
-            item.fields.name,
-            item.fields.calories,
-            item.fields.protein
+            item.name,
+            item.calories,
+            item.protein
         )
 
         binding.foodView.text = string

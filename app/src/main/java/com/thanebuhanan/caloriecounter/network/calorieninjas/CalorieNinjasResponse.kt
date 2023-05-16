@@ -3,10 +3,10 @@ package com.thanebuhanan.caloriecounter.network.calorieninjas
 import com.squareup.moshi.Json
 
 data class CalorieNinjasResponse(
-    val items: List<CalorieNinjasFoodItem>
+    val items: List<FoodItem>
 )
 
-data class CalorieNinjasFoodItem(
+data class FoodItem(
     val name: String,
     val calories: Double,
     @Json(name = "protein_g")

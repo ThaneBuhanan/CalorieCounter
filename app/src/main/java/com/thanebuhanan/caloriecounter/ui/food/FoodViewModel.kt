@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thanebuhanan.caloriecounter.data.local.NutritionDao
 import com.thanebuhanan.caloriecounter.network.NutritionRepository
-import com.thanebuhanan.caloriecounter.network.nutritionix.FoodItem
+import com.thanebuhanan.caloriecounter.network.calorieninjas.FoodItem
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
