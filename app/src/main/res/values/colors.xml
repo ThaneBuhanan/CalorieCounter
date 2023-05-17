@@ -5,4 +5,7 @@
     <color name="darkGreen">#0E2408</color>
     <color name="tan">#EFA77C</color>
     <color name="moreTan">#EC9663</color>
+    <color name="lightGrey">#A7A4A4</color>
+    <color name="grey">#7A7878</color>
+
 </resources>
