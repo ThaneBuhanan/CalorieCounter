@@ -23,12 +23,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.thanebuhanan.caloriecounter.data.dto.DayDTO
 import com.thanebuhanan.caloriecounter.databinding.ListItemDayBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-class DayAdapter(private val clickListener: DayListener) :
+class DayAdapter(private val onClick: (String) -> Unit) :
     ListAdapter<DayDTO, ViewHolder>(DayDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -36,7 +32,7 @@ class DayAdapter(private val clickListener: DayListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val day = getItem(position) as DayDTO
-        holder.bind(clickListener, day)
+        holder.bind(onClick, day)
     }
 }
 
@@ -50,15 +46,11 @@ class DayDiffCallback : DiffUtil.ItemCallback<DayDTO>() {
     }
 }
 
-class DayListener(val clickListener: (dayId: String) -> Unit) {
-    fun onClick(dayDTO: DayDTO) = clickListener(dayDTO.id)
-}
-
 class ViewHolder(private val binding: ListItemDayBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(clickListener: DayListener, item: DayDTO) {
+    fun bind(onClick: (String) -> Unit, item: DayDTO) {
         binding.dayView.text = item.id
-//        binding.clickListener = clickListener
+        binding.root.setOnClickListener { onClick(item.id) }
         binding.executePendingBindings()
     }
 

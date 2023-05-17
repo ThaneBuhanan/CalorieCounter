@@ -21,7 +21,9 @@ class HomeViewModel @Inject constructor(private val nutritionDAO: NutritionDao) 
 
     init {
         viewModelScope.launch {
-            val justDays: List<DayDTO> = nutritionDAO.getAll().justDays()
+            val justDays: List<DayDTO> = nutritionDAO.getAll()
+                .justDays()
+                .sortedByDescending { it.id }
             days.value = justDays
 
             val userDTO = nutritionDAO.getUser().first()
@@ -45,6 +47,10 @@ class HomeViewModel @Inject constructor(private val nutritionDAO: NutritionDao) 
 
     fun doneNavigating() {
         goToDayScreen.value = null
+    }
+
+    fun onDayClicked(dayId: String) {
+        goToDayScreen.value = dayId
     }
 }
 

@@ -29,9 +29,10 @@ class HomeFragment : Fragment() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        val adapter = DayAdapter(DayListener { dayId ->
-//            ViewModel.onSleepNightClicked(nightId)
-        })
+        val adapter = DayAdapter { dayId ->
+            viewModel.onDayClicked(dayId)
+            viewModel.doneNavigating()
+        }
         binding.listOfDays.adapter = adapter
 
         viewModel.days.observe(viewLifecycleOwner) { dayDTOs ->
