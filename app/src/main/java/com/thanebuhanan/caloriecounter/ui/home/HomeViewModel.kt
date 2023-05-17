@@ -17,7 +17,7 @@ class HomeViewModel @Inject constructor(private val nutritionDAO: NutritionDao) 
     val goalCalories = MutableLiveData<Int>()
     val goalProtein = MutableLiveData<Int>()
     val days = MutableLiveData<List<DayDTO>>()
-    val goToDayScreen = MutableLiveData<String>()
+    val goToDayScreen = MutableLiveData<String?>()
 
     init {
         viewModelScope.launch {
@@ -41,6 +41,10 @@ class HomeViewModel @Inject constructor(private val nutritionDAO: NutritionDao) 
             }
             goToDayScreen.value = dayAndFoods.day.id
         }
+    }
+
+    fun doneNavigating() {
+        goToDayScreen.value = null
     }
 }
 

@@ -38,7 +38,11 @@ class HomeFragment : Fragment() {
             adapter.submitList(dayDTOs)
         }
         viewModel.goToDayScreen.observe(viewLifecycleOwner) {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDayFragment(it))
+            if (it != null) {
+                findNavController()
+                    .navigate(HomeFragmentDirections.actionHomeFragmentToDayFragment(it))
+                viewModel.doneNavigating()
+            }
         }
         binding.listOfDays.layoutManager = LinearLayoutManager(requireContext())
         binding.floatingActionButton.setOnClickListener {
