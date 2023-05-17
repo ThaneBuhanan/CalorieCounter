@@ -14,11 +14,17 @@ class DayViewModel @Inject constructor(
     private val nutritionDAO: NutritionDao,
 ) : ViewModel() {
     val foodItems = MutableLiveData<List<FoodItem>>()
+    val protein = MutableLiveData<String>()
+    val calories = MutableLiveData<String>()
 
-    fun populateFoodItems(dayId: String) {
+    fun populateScreen(dayId: String) {
         viewModelScope.launch {
             val dayAndFoods: DayAndFoods = nutritionDAO.getByDayId(dayId)
-            foodItems.value = dayAndFoods.foods.toFoodItems()
+            val items = dayAndFoods.foods.toFoodItems()
+
+            protein.value = items.sumOf { it.protein }.toString()
+            calories.value = items.sumOf { it.calories }.toString()
+            foodItems.value = items
         }
     }
 }

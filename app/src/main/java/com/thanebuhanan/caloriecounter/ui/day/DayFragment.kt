@@ -28,7 +28,8 @@ class DayFragment : Fragment() {
     ): View {
         val dayId = DayFragmentArgs.fromBundle(requireArguments()).dayId
         val binding = FragmentDayBinding.inflate(inflater, container, false)
-
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         val adapter = FoodAdapter { foodItem ->
 //            viewModel.saveFoodItem(dayId, foodItem)
         }
@@ -45,7 +46,7 @@ class DayFragment : Fragment() {
             adapter.submitList(it)
         }
 
-        viewModel.populateFoodItems(dayId)
+        viewModel.populateScreen(dayId)
 
         return binding.root
     }
