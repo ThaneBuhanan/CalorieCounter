@@ -44,8 +44,8 @@ class FoodFragment : Fragment() {
     ): View {
         val dayId = FoodFragmentArgs.fromBundle(requireArguments()).dayId
         val binding = FragmentFoodBinding.inflate(inflater, container, false)
-//        binding.viewModel = homeViewModel
-//        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         val adapter = FoodAdapter { foodItem ->
             viewModel.saveFoodItem(dayId, foodItem)
         }

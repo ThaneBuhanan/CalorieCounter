@@ -16,9 +16,12 @@ class FoodViewModel @Inject constructor(
 ) : ViewModel() {
     val foodItems = MutableLiveData<List<FoodItem>>()
     val goBack = MutableLiveData<Unit>()
+    val isSearching = MutableLiveData<Boolean>()
     fun getFoodItems(query: String) {
         viewModelScope.launch {
+            isSearching.value = true
             foodItems.value = nutritionRepository.getFoodItems(query)
+            isSearching.value = false
         }
     }
 
