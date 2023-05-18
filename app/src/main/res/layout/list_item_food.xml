@@ -7,21 +7,23 @@
 
     </data>
 
-        <androidx.cardview.widget.CardView
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/lightGrey"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
+
+        <TextView
+            android:id="@+id/foodView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="8dp">
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+            tools:text="Hotdog - Calories ___, Protein _g" />
 
-            <TextView
-                android:id="@+id/foodView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_margin="16dp"
-                tools:text="Hotdog - Calories ___, Protein _g" />
-
-        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 </layout>
