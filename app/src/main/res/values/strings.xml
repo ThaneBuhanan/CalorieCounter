@@ -22,4 +22,7 @@
     </string>
     <string name="search_foods">Search Foods</string>
     <string name="food_item">%1$s - Calories %2$.0f, Protein %3$.0f g</string>
+    <string name="notification_title">Calorie Counter</string>
+    <string name="notification_text">Your goals await!</string>
+    <string name="notification_channel_id" translatable="false">calorie_counter_channel</string>
 </resources>
