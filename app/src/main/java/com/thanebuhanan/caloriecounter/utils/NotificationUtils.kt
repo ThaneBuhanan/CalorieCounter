@@ -22,12 +22,12 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         PendingIntent.FLAG_UPDATE_CURRENT
     )
 
-    val eggImage = BitmapFactory.decodeResource(
+    val bicepImage = BitmapFactory.decodeResource(
         applicationContext.resources,
         R.drawable.bicep
     )
     val bigPicStyle = NotificationCompat.BigPictureStyle()
-        .bigPicture(eggImage)
+        .bigPicture(bicepImage)
         .bigLargeIcon(null)
 
     val builder = NotificationCompat.Builder(
@@ -40,7 +40,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .setContentIntent(contentPendingIntent)
         .setAutoCancel(true)
         .setStyle(bigPicStyle)
-        .setLargeIcon(eggImage)
+        .setLargeIcon(bicepImage)
         .setPriority(NotificationCompat.PRIORITY_MIN)
 
     notify(NOTIFICATION_ID, builder.build())
