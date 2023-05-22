@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "851587709532",
+    "project_id": "fcm-notifications-4df1f",
+    "storage_bucket": "fcm-notifications-4df1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:851587709532:android:6195d8bc74028711028499",
+        "android_client_info": {
+          "package_name": "com.example.android.eggtimernotifications"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "851587709532-l0jhstrm2p4j8obplakllgmpgmtobtov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqnLtBDVRWSczVfwjcoxrBDmndh5nYqgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "851587709532-l0jhstrm2p4j8obplakllgmpgmtobtov.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:851587709532:android:1bd051409ea0d244028499",
+        "android_client_info": {
+          "package_name": "com.thanebuhanan.caloriecounter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "851587709532-1ae3t64e7j3krbdtpit50o5jp6n90qa9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thanebuhanan.caloriecounter",
+            "certificate_hash": "37383d32a802e583bf38bf4864902f10f3bff38e"
+          }
+        },
+        {
+          "client_id": "851587709532-l0jhstrm2p4j8obplakllgmpgmtobtov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqnLtBDVRWSczVfwjcoxrBDmndh5nYqgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "851587709532-l0jhstrm2p4j8obplakllgmpgmtobtov.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
