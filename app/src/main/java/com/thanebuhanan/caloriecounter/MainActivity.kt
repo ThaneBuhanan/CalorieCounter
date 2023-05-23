@@ -53,7 +53,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun shouldNotGoBack(): Boolean {
+        val dontPressBackList = listOf<Int>(R.id.homeFragment, R.id.setupFragment)
+        val navDestination =
+            findNavController(R.id.nav_host_fragment_content_main).currentDestination
+        return dontPressBackList.contains(navDestination?.id)
+    }
+
+    override fun onBackPressed() {
+        if (shouldNotGoBack()) {
+            return
+        }
+        super.onBackPressed()
+    }
+
     override fun onSupportNavigateUp(): Boolean {
+        if (shouldNotGoBack()) {
+            return false
+        }
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
