@@ -1,9 +1,16 @@
 package com.thanebuhanan.caloriecounter.ui.home
 
+import android.Manifest
+import android.annotation.TargetApi
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +22,9 @@ class HomeFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: HomeViewModel
+
+    private val runningTiramisuOrLater = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+    private lateinit var activityResultLauncherPermissions: ActivityResultLauncher<Array<String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +60,33 @@ class HomeFragment : Fragment() {
             viewModel.createDay()
         }
 
+        activityResultLauncherPermissions =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { }
+        if (!isNotificationPermissionApproved()) {
+            requestNotificationPermission()
+        }
+
         return binding.root
+    }
+
+    private fun Fragment.hasPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            requireContext(),
+            permission,
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    private fun isNotificationPermissionApproved(): Boolean {
+        if (!runningTiramisuOrLater) {
+            return true
+        }
+
+        return hasPermission(Manifest.permission.POST_NOTIFICATIONS)
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    private fun requestNotificationPermission() {
+        activityResultLauncherPermissions.launch(arrayOf(Manifest.permission.POST_NOTIFICATIONS))
     }
 }
