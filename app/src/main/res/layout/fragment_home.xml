@@ -15,6 +15,17 @@
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment">
 
+        <ImageView
+            app:imageUrl="@{viewModel.staticUrl}"
+            android:id="@+id/dumbbell_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/calories"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/protein"
+            app:layout_constraintTop_toTopOf="@+id/protein"
+            android:contentDescription="@string/dumbbell" />
+
         <TextView
             android:id="@+id/daily_goal"
             android:layout_width="wrap_content"

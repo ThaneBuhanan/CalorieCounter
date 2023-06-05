@@ -18,6 +18,7 @@ class HomeViewModel @Inject constructor(private val nutritionDAO: NutritionDao) 
     val goalProtein = MutableLiveData<Int>()
     val days = MutableLiveData<List<DayDTO>>()
     val goToDayScreen = MutableLiveData<String?>()
+    val staticUrl = MutableLiveData<String>("https://static.vecteezy.com/system/resources/thumbnails/000/539/724/small/dumbbell_2__28b_w_29.jpg")
 
     init {
         viewModelScope.launch {
