@@ -12,6 +12,7 @@
     <color name="greenBrown">#2a3400</color>
     <color name="lightGreen">#b9d160</color>
     <color name="backgroundDark">#231a00</color>
+    <color name="mainTextColor">#ffe086</color>
 
 
 </resources>

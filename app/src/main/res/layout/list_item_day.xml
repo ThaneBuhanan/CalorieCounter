@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/lightGrey"
+        android:backgroundTint="@color/green"
         app:cardCornerRadius="4dp"
         app:cardElevation="4dp">
 
@@ -22,6 +22,7 @@
             android:layout_margin="8dp"
             android:gravity="center"
             android:textSize="20sp"
-            tools:text="18-05-2023" />
+            tools:text="18-05-2023"
+            android:textColor="@color/lightGreen"/>
     </androidx.cardview.widget.CardView>
 </layout>

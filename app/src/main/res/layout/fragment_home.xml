@@ -13,18 +13,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.HomeFragment">
-
-        <ImageView
-            app:imageUrl="@{viewModel.staticUrl}"
-            android:id="@+id/dumbbell_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/calories"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/protein"
-            app:layout_constraintTop_toTopOf="@+id/protein"
-            android:contentDescription="@string/dumbbell" />
+        tools:context=".ui.home.HomeFragment"
+        android:background="@color/backgroundDark">
 
         <TextView
             android:id="@+id/daily_goal"
@@ -33,9 +23,20 @@
             android:layout_marginTop="16dp"
             android:text="@string/daily_goal"
             android:textSize="34sp"
+            android:textColor="@color/mainTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/gProtein_background"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/protein"
+            app:layout_constraintEnd_toEndOf="@+id/protein"
+            app:layout_constraintStart_toStartOf="@+id/goal_protein"
+            app:layout_constraintTop_toTopOf="@+id/goal_protein"
+            app:srcCompat="@drawable/color_background_green" />
 
         <TextView
             android:id="@+id/goal_protein"
@@ -43,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:textSize="20sp"
+            android:textColor="@color/lightGreen"
             android:text="@{String.valueOf(viewModel.goalProtein)}"
             app:layout_constraintBottom_toBottomOf="@+id/protein"
             app:layout_constraintEnd_toStartOf="@+id/protein"
@@ -60,9 +62,20 @@
             android:layout_marginTop="32dp"
             android:text="@string/protein"
             android:textSize="20sp"
+            android:textColor="@color/lightGreen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/goal_protein"
             app:layout_constraintTop_toBottomOf="@+id/daily_goal" />
+
+        <ImageView
+            android:id="@+id/calorie_background"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/goal_calories"
+            app:layout_constraintEnd_toEndOf="@+id/calories"
+            app:layout_constraintStart_toStartOf="@+id/goal_calories"
+            app:layout_constraintTop_toTopOf="@+id/goal_calories"
+            app:srcCompat="@drawable/color_background_green" />
 
         <TextView
             android:id="@+id/goal_calories"
@@ -71,6 +84,7 @@
             android:layout_marginEnd="8dp"
             android:textSize="20sp"
             android:text="@{String.valueOf(viewModel.goalCalories)}"
+            android:textColor="@color/lightGreen"
             app:layout_constraintBottom_toBottomOf="@+id/calories"
             app:layout_constraintEnd_toStartOf="@+id/calories"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -87,6 +101,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/calories"
             android:textSize="20sp"
+            android:textColor="@color/lightGreen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/goal_calories"
             app:layout_constraintTop_toBottomOf="@id/protein" />
@@ -109,7 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:background="@color/grey"
+            android:background="@color/backgroundDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
