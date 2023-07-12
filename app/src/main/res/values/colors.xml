@@ -7,5 +7,11 @@
     <color name="moreTan">#EC9663</color>
     <color name="lightGrey">#A7A4A4</color>
     <color name="grey">#7A7878</color>
+    <color name="brown">#654320</color>
+    <color name="green">#536500</color>
+    <color name="greenBrown">#2a3400</color>
+    <color name="lightGreen">#b9d160</color>
+    <color name="backgroundDark">#231a00</color>
+
 
 </resources>
