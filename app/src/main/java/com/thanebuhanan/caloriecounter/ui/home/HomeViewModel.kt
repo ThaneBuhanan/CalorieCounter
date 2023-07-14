@@ -61,7 +61,7 @@ private fun List<DayAndFoods>.justDays(): List<DayDTO> {
 
 private fun getTodaysDate(): String {
     val c: Date = Calendar.getInstance().time
-    val df = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+    val df = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
 
     return df.format(c)
 }

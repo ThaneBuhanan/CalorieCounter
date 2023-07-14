@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/green"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/primary"
         app:cardCornerRadius="4dp"
         app:cardElevation="4dp">
 
@@ -22,7 +24,7 @@
             android:layout_margin="8dp"
             android:textSize="20sp"
             tools:text="Hotdog - Calories ___, Protein _g"
-            android:textColor="@color/lightGreen"/>
+            android:textColor="@color/onPrimary"/>
 
     </androidx.cardview.widget.CardView>
 

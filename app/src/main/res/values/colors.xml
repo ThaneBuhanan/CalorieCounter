@@ -7,12 +7,12 @@
     <color name="moreTan">#EC9663</color>
     <color name="lightGrey">#A7A4A4</color>
     <color name="grey">#7A7878</color>
-    <color name="brown">#654320</color>
-    <color name="green">#536500</color>
-    <color name="greenBrown">#2a3400</color>
-    <color name="lightGreen">#b9d160</color>
-    <color name="backgroundDark">#231a00</color>
-    <color name="mainTextColor">#ffe086</color>
+    <color name="primary">#a0cfd0</color>
+    <color name="onPrimary">#204748</color>
+    <color name="secondary">#294666</color>
+    <color name="onSecondary">#2C6895</color>
+    <color name="backgroundDark">#001f25</color>
+    <color name="onBackgroundDark">#bfe9ff</color>
 
 
 </resources>

@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:padding="16dp"
         tools:context=".ui.setup.SetupFragment"
-        android:background="#231a00">
+        android:background="@color/backgroundDark">
 
         <ImageView
             android:id="@+id/imageView"
@@ -25,7 +25,7 @@
             app:layout_constraintEnd_toEndOf="@+id/welcome_text"
             app:layout_constraintStart_toStartOf="@+id/welcome_text"
             app:layout_constraintTop_toTopOf="@+id/welcome_text"
-            app:srcCompat="@drawable/color_background_green" />
+            app:srcCompat="@drawable/color_background_secondary" />
 
         <TextView
             android:id="@+id/welcome_text"
@@ -35,12 +35,22 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="@string/setup_text"
-            android:textColor="@color/lightGreen"
+            android:textColor="@color/primary"
             android:textSize="24sp"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/weight"
+            app:layout_constraintEnd_toEndOf="@+id/weight"
+            app:layout_constraintStart_toStartOf="@+id/weight"
+            app:layout_constraintTop_toTopOf="@+id/weight"
+            app:srcCompat="@drawable/background_color_one" />
 
         <TextView
             android:id="@+id/weight"
@@ -50,7 +60,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/weight"
             android:textSize="20sp"
-            android:textColor="@color/lightGreen"
+            android:textColor="@color/onBackgroundDark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
 
@@ -63,7 +73,7 @@
             android:importantForAutofill="no"
             android:text="@={viewModel.weight}"
             android:inputType="number"
-            android:textColor="@color/lightGreen"
+            android:textColor="@color/onBackgroundDark"
             app:layout_constraintBottom_toBottomOf="@+id/weight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/weight"
@@ -71,14 +81,27 @@
             tools:ignore="LabelFor" />
 
         <ImageView
-            android:id="@+id/selectGoalBackground"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            app:layout_constraintBottom_toBottomOf="@+id/selectGoal"
-            app:layout_constraintEnd_toEndOf="@+id/selectGoal"
-            app:layout_constraintStart_toStartOf="@+id/selectGoal"
+            android:id="@+id/buttonBackground"
+            android:layout_width="320dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/button_gain"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/selectGoal"
-            app:srcCompat="@drawable/color_background_green" />
+            app:srcCompat="@drawable/color_background_primary" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/selectGoal"
+            app:layout_constraintEnd_toEndOf="@+id/buttonBackground"
+            app:layout_constraintStart_toEndOf="@+id/selectGoal"
+            app:layout_constraintTop_toTopOf="@+id/selectGoal"
+            app:srcCompat="@android:drawable/ic_menu_myplaces" />
+
+
 
         <TextView
             android:id="@+id/selectGoal"
@@ -87,7 +110,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/goal"
             android:textSize="24sp"
-            android:textColor="@color/lightGreen"
+            android:textColor="@color/onPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,8 +123,8 @@
             android:layout_marginTop="32dp"
             android:text="@string/gain"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/lightGreen"
-            app:backgroundTint="@color/greenBrown"
+            android:textColor="@color/primary"
+            app:backgroundTint="@color/onPrimary"
             app:layout_constraintEnd_toStartOf="@id/button_lose"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/selectGoal" />
@@ -113,8 +136,8 @@
             android:layout_marginTop="32dp"
             android:text="@string/lose"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/lightGreen"
-            app:backgroundTint="@color/greenBrown"
+            android:textColor="@color/primary"
+            app:backgroundTint="@color/onPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_gain"
             app:layout_constraintTop_toBottomOf="@+id/selectGoal" />
